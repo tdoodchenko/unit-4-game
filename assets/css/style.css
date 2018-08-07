@@ -1,0 +1,74 @@
+body {
+    background-color: black
+}
+
+p {
+    padding: 10px;
+    font-size: 25px;
+    color: azure;
+    
+}
+
+h1 {
+    font-size: 150px;
+    color: azure;
+    padding-left: 60px;
+}
+
+p2 {
+    color: azure;
+    font-size: 50px;
+    padding-left: 70px;
+
+}
+
+.opp-rows {
+   padding-bottom: 20px;
+   padding-top: 20px;
+   
+}
+
+.top-row {
+    padding-top: 60px;
+    padding-bottom: 10px;
+}
+
+
+
+h3 {
+    color: azure;
+}
+
+p1 {
+    font-size: 40px;
+    color: azure;
+}
+
+.score {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-style: solid;
+    border-width: 5px;
+    border-top-color: azure;
+    border-bottom-color: azure;
+    border-right: 0;
+    border-left: 0;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    
+}
+
+.header-img {
+    padding-left: 60px;
+    padding-top: 40px;
+}
+
+.select-row {
+    padding-bottom: 10px;
+}
+
+.score-x {
+    float: right;
+    padding-right: 50px;
+
+}

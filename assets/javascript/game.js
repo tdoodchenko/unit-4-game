@@ -8,6 +8,11 @@ $(document).ready(function() {
 
     var selectOpp;
     
+    var attackPoints;
+    var HP;
+    var AttackPower;
+    var counterAttack;
+
     var playerHP = 0;
     var wins = 0;
     var losses = 0;
@@ -17,27 +22,19 @@ $(document).ready(function() {
 
     $(".theBoys").on("click", function() {
         console.log("Ricky, Julian and Bubbles ar good to go!");    
-    
-     
+        
 
     });
 
     $(".caveman").on("click", function() {
-
-    })
-
-    function selectOpp(id, name, object, status) {
-        id.click(function() {
-
-            if (selectOpp === undefined) {
-                selectOpp = name;
-               
-            } 
+        console.log("Can the boys take down the greasy caveman, Sam Losco?")
+    });
 
 
 
-        }
+        
 
-    }
+    
+
 
 })
