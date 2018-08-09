@@ -30,26 +30,26 @@ $(document).ready(function() {
         {
           "id"      : "1",
           "name"    : "Sam 'caveman' Losco",
-          "imgSrc"  : '<img src="./assets/images/caveman.jpg" class="img-thumbnail" >'
+          "imgSrc"  : '<img src="./assets/images/caveman.jpg" class="img-thumbnail opp" width="300px" >',
         };
     var officer =
         {
           "id"      : "2",
           "name"    : "Officer George Green",
-          "imgSrc"  : '<img src="./assets/images/officer-george-green.jpg" class="img-thumbnail" >'
+          "imgSrc"  : '<img src="./assets/images/officer-george-green.jpg" class="img-thumbnail opp" width="300px" >',
         };
     var cyrus = 
         {
           "id"      : "3",
           "name"    : "Cyrus, Terry & Dennis",
-          "imgSrc"  : '<img src="./assets/images/cyrus-twins.jpg" class="img-thumbnail" >'
+          "imgSrc"  : '<img src="./assets/images/cyrus-twins.jpg" class="img-thumbnail opp" width="300px" >',
         };
     var lahey =
         {
           "id"      : "4",
           "name"    : "Jim Lahey & Randy Bobandy",
           "HP"      : 0,
-          "imgSrc"  : '<img src="./assets/images/lahey-randy.jpg" class="img-thumbnail" >'
+          "imgSrc"  : '<img src="./assets/images/lahey-randy.jpg" class="img-thumbnail opp" width="300px" >',
         };
 
     var charArray = [caveman, officer, cyrus, lahey];
@@ -71,7 +71,7 @@ $(document).ready(function() {
         console.log(charArray[i].imgSrc);
         $("#select-opp").replaceWith(charArray[i].imgSrc);
         console.log(charArray[i].name);
-        $("#opp-name").replaceWith(charArray[i].name);
+        $("#opp-name").html(charArray[i].name);
         
 
      }

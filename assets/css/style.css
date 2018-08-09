@@ -74,13 +74,28 @@ p1 {
 }
 
 button {
-    color: black;
-    margin-left: 50px;
-    
+   
+    border-color: azure;
+    color: black;   
 
 }
 
 #img1 {
     width: 300px;
+    float: right;
 }
 
+.img-thumbnail {
+    border-radius: 0;
+}
+
+.opp {
+    float: right;
+}
+
+h4 {
+    float: right;
+    color: azure;
+    margin-right: 10px;
+    
+}
