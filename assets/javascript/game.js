@@ -69,7 +69,7 @@ $(document).ready(function() {
     for (var i=0; i<charArray.length; i++) {
      if (charID === charArray[i].id) {
         console.log(charArray[i].imgSrc);
-        $("#select-opp").replaceWith(charArray[i].imgSrc);
+        $("#select-opp").html(charArray[i].imgSrc);
         console.log(charArray[i].name);
         $("#opp-name").html(charArray[i].name);
         
