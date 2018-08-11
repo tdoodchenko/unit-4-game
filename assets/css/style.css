@@ -13,6 +13,14 @@ h1 {
     font-size: 150px;
     color: azure;
     text-align: center;
+    
+}
+
+h2 {
+    font-size: 35px;
+    color: azure;
+    text-align: center; 
+    
 }
 
 p2 {
@@ -75,10 +83,11 @@ p1 {
 
 }
 
-button {
+.btn {
     border-color: azure;
     color: black;   
     float: left;
+    margin-bottom: 10px;
 
 }
 
@@ -106,4 +115,33 @@ h5 {
     float: left;
     color: azure;
     font-size: 20px;
+}
+
+h6 {
+    float: right;
+    color: azure;
+    font-size: 20px;
+}
+
+#hp-board {
+    float: right;
+
+}
+
+#opponent-hp {
+    color: azure;
+    font-size: 40px;
+    float: left;
+
+}
+
+#theBoys-hp {
+    color: azure;
+    font-size: 40px;
+    float: right;
+ 
+}
+
+.adjust {
+    padding-top: 37px;
 }

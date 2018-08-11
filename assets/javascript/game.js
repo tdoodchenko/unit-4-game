@@ -8,6 +8,7 @@ $(document).ready(function() {
        img1.attr("src","./assets/images/CHOOSE.png")
        img1.attr("id", "img1")
     $("#select-opp").html(img1);
+    $("#opponent-hp").html("--");
    }
 
    start();
@@ -40,111 +41,154 @@ $(document).ready(function() {
           "id"      : "2",
           "name"    : "Officer George Green",
           "imgSrc"  : '<img src="./assets/images/officer-george-green.jpg" class="img-thumbnail opp" width="300px" >',
+          "hp"      : 100,
+          "counterAttack" : 20,
         };
     var cyrus = 
         {
           "id"      : "3",
           "name"    : "Cyrus, Terry & Dennis",
           "imgSrc"  : '<img src="./assets/images/cyrus-twins.jpg" class="img-thumbnail opp" width="300px" >',
+          "hp"      : 100,
+          "counterAttack" : 20,
         };
     var lahey =
         {
           "id"      : "4",
           "name"    : "Jim Lahey & Randy Bobandy",
-          "hp"      : 0,
           "imgSrc"  : '<img src="./assets/images/lahey-randy.jpg" class="img-thumbnail opp" width="300px" >',
+          "hp"      : 100,
+          "counterAttack" : 20,
         };
 
     var charArray = [caveman, officer, cyrus, lahey];
 
     var wins = 0;
     var losses = 0;
-    var OpponentChosen = false;
-    var gameStart = false;
+    var opponentChosen = [];
+    var opponentHP = [];
+    var counterAttack = [];
+
+
+
+    gameStart = false;
     opponentOne = false;
 	opponenttwo = false;
     opponentThree = false;
 
+    
+     
+
     $('#wins').text(wins);
     $('#losses').text(losses);
+    $('#theBoys-hp').text(theBoys.hp)
 
    $('.opp-btn').on("click", function() {
     console.log("it is working");
     console.log($(this).attr("id"));
     var charID = $(this).attr("id");
-    console.log(charArray[0].id)
+    console.log(charArray[0].id);
+    gameStart = true;
+    opponentOne = true;
     for (var i=0; i<charArray.length; i++) {
      if (charID === charArray[i].id) {
         console.log(charArray[i].imgSrc);
+        opponentChosen = charArray[i].name;
+        opponentHP = charArray[i].hp;
+        counterAttack = charArray[i].counterAttack;
+        
         $("#select-opp").html(charArray[i].imgSrc);
         console.log(charArray[i].name);
         $("#opp-name").html(charArray[i].name);
-        gameStart = true;
-        
+        console.log(charArray[i].hp);
+        $("#opponent-hp").text(charArray[i].hp);
+        console.log("this is " + opponentChosen);
+        console.log("they have " + opponentHP + " health points");
+        console.log("counter strike is " + counterAttack);
+        console.log(theBoys.attackPower);
 
+        $(".btn").on("click", function() {
+            attack();
+            counter();
+        })
      }
     }
     
-    // function set ATTACK
-    function attack(){
-		
-		OpponentChosen.hp = OpponentChosen.hp - theBoys.attackPower;
-		$("#opponent-hp").html(OpponentChosen.hp);
-			console.log("HP: " + OpponentChosen.hp);
-	
-	}
-    // function set COUNTER ATTACK  
-	function counterAttack(){
-		theBoys.hp = theBoy.hp - OpponentChosen.counterAttack;
-		$("#theBoys-hp").html(theBoys.hp);
-			console.log("the boys HP: " + theBoys.hp);
-			console.log("opponent counter attack power is " + OpponentChosen.counterAttack)
-		if (theBoys.hp <= 0){
-            alert("Looks like the boys are going back to jail!");
-            gameLose();	   
-		}
-	}
-    // function set COUNTER ATTACK
-	function increaseAttack(){
-		theBoys.attackPower = theBoys.attackPower + theBoys.initialAttackPower;
-			console.log("player attack power is " + theBoys.attackPower);
-    }	
-    // function set CHECK FOR PROGRESS OF GAME
-    function Progress(){
-        if (wins === 4){
-        alert("That's Greeasy! The boys are running the park now!");
-        gameWin();
-    }
-    else {	
-        gameStart = false;
-       
-    }
-        $("#select-opp").empty();
-      ;
-    }	
-
-    // function set START BATTLE
-    function startBattle(){
-		$("#attack-button").on("click", function() {
-			console.log("button pressed");
-			if (gameStart === true){   	
-				attack();
-				increaseAttack();
-				if (opponentChosen.hp <= 0){
-				checkProgress();
-				}
-				else {
-				counterAttack();
-				lightsaberClash.play();
-				}
-			}		
-		});		
+    function attack() {
+        opponentHP = opponentHP - theBoys.attackPower;
+        $("#opponent-hp").html(opponentHP);
     }
 
+    function counter() {
+        theBoys.hp = theBoys.hp - counterAttack;
+        $("#theBoys-hp").html(theBoys.hp);
+    }
 
    })
 
 
+
+
+
+// // function set ATTACK
+// function attack(){
+		
+//     OpponentChosen.hp = OpponentChosen.hp - theBoys.attackPower;
+//     $("#opponent-hp").html(OpponentChosen.hp);
+//         console.log("HP: " + OpponentChosen.hp);
+
+// }
+// // function set COUNTER ATTACK  
+// function counterAttack(){
+//     theBoys.hp = theBoy.hp - OpponentChosen.counterAttack;
+//     $("#theBoys-hp").html(theBoys.hp);
+//         console.log("the boys HP: " + theBoys.hp);
+//         console.log("opponent counter attack power is " + OpponentChosen.counterAttack)
+//     if (theBoys.hp <= 0){
+//         alert("Looks like the boys are going back to jail!");
+//         gameLose();	   
+//     }
+// }
+// // function set INCREASE ATTACK
+// function increaseAttack(){
+//     theBoys.attackPower = theBoys.attackPower + theBoys.initialAttackPower;
+//         console.log("player attack power is " + theBoys.attackPower);
+// }	
+// // function set CHECK FOR PROGRESS OF GAME
+// function Progress(){
+//     if (wins === 4){
+//     alert("That's Greeasy! The boys are running the park now!");
+//     gameWin();
+// }
+// else {	
+//     gameStart = false;
+   
+// }
+//     $("#select-opp").empty();
+//   ;
+// }	
+
+// // function set START BATTLE
+// function startBattle(){
+//     $("#attack-button").on("click", function() {
+//         console.log("button pressed");
+//         if (gameStart === true){   	
+//             attack();
+//             increaseAttack();
+//             if (opponentChosen.hp <= 0){
+//             checkProgress();
+//             }
+//             else {
+//             counterAttack();
+//             lightsaberClash.play();
+//             }
+//         }		
+//     });		
+// }
+
+
+
+//////////////////////////
 
 
     // function reset() {
