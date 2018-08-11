@@ -9,6 +9,7 @@ $(document).ready(function() {
        img1.attr("id", "img1")
     $("#select-opp").html(img1);
     $("#opponent-hp").html("--");
+    $("#opp-name").html(" ");
    }
 
    start();
@@ -110,6 +111,8 @@ $(document).ready(function() {
         $(".btn").on("click", function() {
             attack();
             counter();
+            win();
+            lose();
         })
      }
     }
@@ -117,11 +120,30 @@ $(document).ready(function() {
     function attack() {
         opponentHP = opponentHP - theBoys.attackPower;
         $("#opponent-hp").html(opponentHP);
+        theBoys.attackPower = theBoys.attackPower + theBoys.dmgInc;
     }
 
     function counter() {
         theBoys.hp = theBoys.hp - counterAttack;
         $("#theBoys-hp").html(theBoys.hp);
+    }
+
+    function win() {
+        if (opponentHP <= 0) {
+            alert("Looks like ol' " + opponentChosen + " is going back to jail!");
+            wins++;
+            $("#wins").html(wins);
+            start();            
+        
+        }
+    }
+
+    function lose() {
+        if (theBoys.hp <= 0) {
+            alert("Boys we're going back to jail... At least they have smokes and liquor!");
+            losses++;
+            $("#losses").html(losses);
+        }
     }
 
    })
