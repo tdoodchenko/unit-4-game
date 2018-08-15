@@ -10,6 +10,7 @@ $(document).ready(function() {
     $("#select-opp").html(img1);
     $("#opponent-hp").html("--");
     $("#opp-name").html(" ");
+   
    }
 
    start();
@@ -20,7 +21,7 @@ $(document).ready(function() {
         {
         "id"        : "theBoys",
         "name"      : "The Boys",
-        "hp"        : 120,
+        "hp"        : 420,
         "attackPower" : 14,
         "dmgInc"    : 6,
         }
@@ -31,6 +32,7 @@ $(document).ready(function() {
      var caveman =
         {
           "id"      : "1",
+          "img" : "#1",
           "name"    : "Sam 'caveman' Losco",
           "imgSrc"  : '<img src="./assets/images/caveman.jpg" class="img-thumbnail opp" width="300px" >',
           "hp"      : 100,
@@ -40,26 +42,29 @@ $(document).ready(function() {
     var officer =
         {
           "id"      : "2",
+          "img" : "#2",
           "name"    : "Officer George Green",
           "imgSrc"  : '<img src="./assets/images/officer-george-green.jpg" class="img-thumbnail opp" width="300px" >',
           "hp"      : 100,
-          "counterAttack" : 20,
+          "counterAttack" : 22,
         };
     var cyrus = 
         {
           "id"      : "3",
+          "img" : "#3",
           "name"    : "Cyrus, Terry & Dennis",
           "imgSrc"  : '<img src="./assets/images/cyrus-twins.jpg" class="img-thumbnail opp" width="300px" >',
           "hp"      : 100,
-          "counterAttack" : 20,
+          "counterAttack" : 24,
         };
     var lahey =
         {
           "id"      : "4",
+          "img" : "#4",
           "name"    : "Jim Lahey & Randy Bobandy",
           "imgSrc"  : '<img src="./assets/images/lahey-randy.jpg" class="img-thumbnail opp" width="300px" >',
           "hp"      : 100,
-          "counterAttack" : 20,
+          "counterAttack" : 26,
         };
 
     var charArray = [caveman, officer, cyrus, lahey];
@@ -69,7 +74,8 @@ $(document).ready(function() {
     var opponentChosen = [];
     var opponentHP = [];
     var counterAttack = [];
-
+    var imgID = [];
+    var oppInBattle = false;
 
 
     gameStart = false;
@@ -77,26 +83,44 @@ $(document).ready(function() {
 	opponenttwo = false;
     opponentThree = false;
 
-    
-     
-
+ 
     $('#wins').text(wins);
     $('#losses').text(losses);
     $('#theBoys-hp').text(theBoys.hp)
+
+    // images
+    // caveman
+    $("#1").html(caveman.imgSrc);
+    // officer
+    $("#2").html(officer.imgSrc);
+    // cyrus
+    $("#3").html(cyrus.imgSrc);
+    // lahey
+    $("#4").html(lahey.imgSrc);
 
    $('.opp-btn').on("click", function() {
     console.log("it is working");
     console.log($(this).attr("id"));
     var charID = $(this).attr("id");
     console.log(charArray[0].id);
+    oppInBattle = true;
     gameStart = true;
-    opponentOne = true;
+    opponentChosen = true;
+    //
+
+    //
+    theBoys.hp = 120;
+    $("#theBoys-hp").html(theBoys.hp);
+    battle();
     for (var i=0; i<charArray.length; i++) {
      if (charID === charArray[i].id) {
         console.log(charArray[i].imgSrc);
         opponentChosen = charArray[i].name;
         opponentHP = charArray[i].hp;
         counterAttack = charArray[i].counterAttack;
+        imgID = charArray[i].img;
+        
+        
         
         $("#select-opp").html(charArray[i].imgSrc);
         console.log(charArray[i].name);
@@ -107,16 +131,28 @@ $(document).ready(function() {
         console.log("they have " + opponentHP + " health points");
         console.log("counter strike is " + counterAttack);
         console.log(theBoys.attackPower);
-
+        
         $(".btn").on("click", function() {
             attack();
             counter();
             win();
             lose();
+
         })
      }
     }
     
+  
+
+
+
+
+    function battle() {
+        if (oppInBattle = true) {
+            $(".opp-rows").hide();
+    }
+    }
+
     function attack() {
         opponentHP = opponentHP - theBoys.attackPower;
         $("#opponent-hp").html(opponentHP);
@@ -125,26 +161,48 @@ $(document).ready(function() {
 
     function counter() {
         theBoys.hp = theBoys.hp - counterAttack;
-        $("#theBoys-hp").html(theBoys.hp);
+        $('#theBoys-hp').html(theBoys.hp);
     }
 
     function win() {
-        if (opponentHP <= 0) {
+        if (opponentHP < 1) {
             alert("Looks like ol' " + opponentChosen + " is going back to jail!");
             wins++;
             $("#wins").html(wins);
-            start();            
-        
+            $(".opp-rows").show();
+           remove();
+           theBoys.hp + 120
+                   
         }
     }
 
     function lose() {
-        if (theBoys.hp <= 0) {
+        if (theBoys.hp < 1) {
             alert("Boys we're going back to jail... At least they have smokes and liquor!");
             losses++;
             $("#losses").html(losses);
         }
     }
+
+    function remove() {
+        $(opponentChosen.img).remove();
+        $(".img-thumbnail").prop( "disabled", true );
+        
+    }
+    // function nextOpp() {
+    //     console.log(charArray);
+    //     var img1 = $("<img />");
+    //    img1.attr("src","./assets/images/CHOOSE.png");
+    //    img1.attr("id", "img1");
+    //     $("#select-opp").html(img1);
+    //     $("#opponent-hp").html("--");
+    //     charArray.splice($.inArray(opponentChosen, charArray),1);
+    //     $("#opp-name").html(" ");
+    //     $(opponentChosen.id).css("opacity", 0.5);
+    //     $(opponentChosen).remove();
+    //     $(".opp-rows").show();
+    // }
+
 
    })
 
@@ -230,10 +288,5 @@ $(document).ready(function() {
   })
 
 
-  
-    // var attackPoints;
-    // var HP;
-    // var AttackPower;
-    // var counterAttack;
 
    
