@@ -37,6 +37,7 @@ $(document).ready(function() {
           "imgSrc"  : '<img src="./assets/images/caveman.jpg" class="img-thumbnail opp" width="300px" >',
           "hp"      : 100,
           "counterAttack" : 20,
+        
 
         };
     var officer =
@@ -45,7 +46,7 @@ $(document).ready(function() {
           "img" : "#2",
           "name"    : "Officer George Green",
           "imgSrc"  : '<img src="./assets/images/officer-george-green.jpg" class="img-thumbnail opp" width="300px" >',
-          "hp"      : 100,
+          "hp"      : 150,
           "counterAttack" : 22,
         };
     var cyrus = 
@@ -54,7 +55,7 @@ $(document).ready(function() {
           "img" : "#3",
           "name"    : "Cyrus, Terry & Dennis",
           "imgSrc"  : '<img src="./assets/images/cyrus-twins.jpg" class="img-thumbnail opp" width="300px" >',
-          "hp"      : 100,
+          "hp"      : 220,
           "counterAttack" : 24,
         };
     var lahey =
@@ -63,7 +64,7 @@ $(document).ready(function() {
           "img" : "#4",
           "name"    : "Jim Lahey & Randy Bobandy",
           "imgSrc"  : '<img src="./assets/images/lahey-randy.jpg" class="img-thumbnail opp" width="300px" >',
-          "hp"      : 100,
+          "hp"      : 420,
           "counterAttack" : 26,
         };
 
@@ -82,8 +83,13 @@ $(document).ready(function() {
     opponentOne = false;
 	opponenttwo = false;
     opponentThree = false;
+    opp1 = false;
+    opp2 = false;
+    opp3 = false;
+    opp4 = false;
 
- 
+   
+
     $('#wins').text(wins);
     $('#losses').text(losses);
     $('#theBoys-hp').text(theBoys.hp)
@@ -114,14 +120,16 @@ $(document).ready(function() {
     battle();
     for (var i=0; i<charArray.length; i++) {
      if (charID === charArray[i].id) {
-        console.log(charArray[i].imgSrc);
+        
         opponentChosen = charArray[i].name;
         opponentHP = charArray[i].hp;
         counterAttack = charArray[i].counterAttack;
         imgID = charArray[i].img;
-        
-        
-        
+        //
+       if(charArray[i].id === "#1") {
+           $("#1").html();
+       }
+        //
         $("#select-opp").html(charArray[i].imgSrc);
         console.log(charArray[i].name);
         $("#opp-name").html(charArray[i].name);
@@ -132,19 +140,29 @@ $(document).ready(function() {
         console.log("counter strike is " + counterAttack);
         console.log(theBoys.attackPower);
         
+
         $(".btn").on("click", function() {
             attack();
             counter();
             win();
             lose();
-
+            remove();
+            
         })
+       
+        
+
      }
     }
     
   
 
-
+    function takeBackThePark() {
+        if (wins = "4") {
+            alert("The boys finally have control of the park!");
+            location.reload();
+        }
+    }
 
 
     function battle() {
@@ -171,7 +189,11 @@ $(document).ready(function() {
             $("#wins").html(wins);
             $(".opp-rows").show();
            remove();
-           theBoys.hp + 120
+           theBoys.hp = 120;
+           $(opponentChosen.id).prop("onclick", false);
+          
+         
+       
                    
         }
     }
@@ -184,109 +206,15 @@ $(document).ready(function() {
         }
     }
 
-    function remove() {
-        $(opponentChosen.img).remove();
-        $(".img-thumbnail").prop( "disabled", true );
-        
-    }
-    // function nextOpp() {
-    //     console.log(charArray);
-    //     var img1 = $("<img />");
-    //    img1.attr("src","./assets/images/CHOOSE.png");
-    //    img1.attr("id", "img1");
-    //     $("#select-opp").html(img1);
-    //     $("#opponent-hp").html("--");
-    //     charArray.splice($.inArray(opponentChosen, charArray),1);
-    //     $("#opp-name").html(" ");
-    //     $(opponentChosen.id).css("opacity", 0.5);
-    //     $(opponentChosen).remove();
-    //     $(".opp-rows").show();
-    // }
+    
+    
 
 
    })
-
-
-
-
-
-// // function set ATTACK
-// function attack(){
-		
-//     OpponentChosen.hp = OpponentChosen.hp - theBoys.attackPower;
-//     $("#opponent-hp").html(OpponentChosen.hp);
-//         console.log("HP: " + OpponentChosen.hp);
-
-// }
-// // function set COUNTER ATTACK  
-// function counterAttack(){
-//     theBoys.hp = theBoy.hp - OpponentChosen.counterAttack;
-//     $("#theBoys-hp").html(theBoys.hp);
-//         console.log("the boys HP: " + theBoys.hp);
-//         console.log("opponent counter attack power is " + OpponentChosen.counterAttack)
-//     if (theBoys.hp <= 0){
-//         alert("Looks like the boys are going back to jail!");
-//         gameLose();	   
-//     }
-// }
-// // function set INCREASE ATTACK
-// function increaseAttack(){
-//     theBoys.attackPower = theBoys.attackPower + theBoys.initialAttackPower;
-//         console.log("player attack power is " + theBoys.attackPower);
-// }	
-// // function set CHECK FOR PROGRESS OF GAME
-// function Progress(){
-//     if (wins === 4){
-//     alert("That's Greeasy! The boys are running the park now!");
-//     gameWin();
-// }
-// else {	
-//     gameStart = false;
-   
-// }
-//     $("#select-opp").empty();
-//   ;
-// }	
-
-// // function set START BATTLE
-// function startBattle(){
-//     $("#attack-button").on("click", function() {
-//         console.log("button pressed");
-//         if (gameStart === true){   	
-//             attack();
-//             increaseAttack();
-//             if (opponentChosen.hp <= 0){
-//             checkProgress();
-//             }
-//             else {
-//             counterAttack();
-//             lightsaberClash.play();
-//             }
-//         }		
-//     });		
-// }
-
-
-
-//////////////////////////
-
-
-    // function reset() {
-    //     OpponentChosen = false;
-    //     wins = 0;
-    //     losses = 0;
-    //     $("#select-opp").append('<img src="./assets/images/CHOOSE.png" width="300px"/>');
-    // }
-
-    // if ($("#1").click) {
-    //     $("#select-opp").replaceWith('<img src="./assets/images/caveman.jpg" width="300px" class="img-thumbnail" />');
-    //     console.log("selected opponent")
-    // }
-
-
 
   })
 
 
 
+   
    
